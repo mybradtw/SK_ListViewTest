@@ -2,8 +2,11 @@ package tw.brad.app.listviewtest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -41,6 +44,19 @@ public class MainActivity extends AppCompatActivity {
                 to);
 
         listView.setAdapter(simpleAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                doItem(i);
+            }
+        });
     }
+
+    private void doItem(int i){
+        Toast.makeText(this, data.get(i).get(from[0]), Toast.LENGTH_SHORT).show();
+    }
+
+
+
 
 }
