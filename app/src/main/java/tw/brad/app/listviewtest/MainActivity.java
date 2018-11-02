@@ -2,6 +2,7 @@ package tw.brad.app.listviewtest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -47,9 +48,19 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                doItem(i);
+                //doItem(i);
+                Log.v("brad", "itemClick");
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, "Item "+i, Toast.LENGTH_SHORT).show();
+                return true; //false;
+            }
+        });
+
     }
 
     private void doItem(int i){
@@ -57,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void addData(View view) {
+        HashMap<String,String> newdata = new HashMap<>();
+        newdata.put(from[0], "新事件");
+        newdata.put(from[1], "2019-01-02");
+        data.add(0, newdata);
 
+        simpleAdapter.notifyDataSetChanged();
 
+    }
 }
