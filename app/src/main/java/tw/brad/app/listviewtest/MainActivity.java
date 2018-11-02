@@ -77,4 +77,9 @@ public class MainActivity extends AppCompatActivity {
         simpleAdapter.notifyDataSetChanged();
 
     }
+
+    public void removeData(View view) {
+        data.remove(0);
+        simpleAdapter.notifyDataSetChanged();
+    }
 }
